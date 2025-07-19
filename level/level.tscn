@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://woxkdgx7c6do"]
+
+[ext_resource type="Script" uid="uid://b3nll6xmg7yym" path="res://level/level.gd" id="1_7lnir"]
+
+[node name="Level" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_7lnir")
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Menu" type="VBoxContainer" parent="."]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FinalScoreLabel" type="Label" parent="Menu"]
+layout_mode = 2
+
+[node name="TryAgainButton" type="Button" parent="Menu"]
+layout_mode = 2
+text = "Try again?"
+
+[node name="QuitButton" type="Button" parent="Menu"]
+layout_mode = 2
+text = "Quit?"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Menu/TryAgainButton" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="Menu/QuitButton" to="." method="_on_quit_button_pressed"]
